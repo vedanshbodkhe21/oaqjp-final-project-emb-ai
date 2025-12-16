@@ -32,6 +32,9 @@ def detect_emotion():
     # Dominant emotion is the last value of scores
     dominant_emotion = scores[-1]
 
+    if dominant_emotion is None:
+        return "<b>Invalid text! Please try again!.</b>"
+
     result_string += f"The dominant emotion is <b>{dominant_emotion}</b>."
 
     return result_string
