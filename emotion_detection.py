@@ -2,6 +2,7 @@
 Detect emotion of a text
 """
 
+import json
 import requests
 
 # Timeout for requets.post
@@ -25,4 +26,12 @@ def emotion_detector(text_to_analyse):
         timeout=TIMEOUT
         )
 
-    return r.text
+    # Load in json
+    js = json.loads(r.text)
+    emotion_dict = js['emotionPredictions'][0]['emotion']
+
+    # Find the domniannt emotion and add it the the
+    max_emo = max(emotion_dict, key=emotion_dict.get)
+    emotion_dict['dominant_emotion'] = max_emo
+
+    return emotion_dict
