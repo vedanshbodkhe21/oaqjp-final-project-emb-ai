@@ -30,7 +30,7 @@ def emotion_detector(text_to_analyse):
     js = json.loads(r.text)
     emotion_dict = js['emotionPredictions'][0]['emotion']
 
-    # Find the domniannt emotion and add it the the
+    # Find the dominant emotion and add it to result
     max_emo = max(emotion_dict, key=emotion_dict.get)
     emotion_dict['dominant_emotion'] = max_emo
 
